@@ -1,38 +1,271 @@
-.App {
-  text-align: center;
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.mtm-submit-disabled {
+  cursor: not-allowed !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.mtm-loader {
+  margin: 0 5px 0 5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.mtm-wrapper-file-upload p {
+  font-size: 1rem;
+}
+
+.mtm-wrapper-file-upload .mtm-file-upload-clickzone,
+.mtm-wrapper-file-upload .mtm-file-upload-dropzone {
+  margin: 0;
+}
+
+.mtm-file-upload-container {
+  margin: 0;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition-property: box-shadow;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0ms;
+}
+
+.mtm-file-upload-info {
+  margin: 0;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition-property: box-shadow;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0ms;
+}
+
+.mtm-file-upload-clickzone {
+  margin: 0;
+  margin-bottom: 10px;
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding: 16px;
+  border-radius: 4px;
+  background-color: rgb(7, 7, 7);
+  box-shadow: 0px 2px 1px -1px rgb(255 255 255 / 20%),
+    0px 1px 1px 0px rgb(255 255 255 / 14%),
+    0px 1px 3px 0px rgb(255 255 255 / 12%);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition-property: box-shadow;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0ms;
+}
+
+.mtm-file-upload-dropzone {
+  margin: 0 0 10px 0;
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgb(255 255 255 / 20%),
+    0px 1px 1px 0px rgb(255 255 255 / 14%),
+    0px 1px 3px 0px rgb(255 255 255 / 12%);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition-property: box-shadow;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0ms;
+  background-color: rgb(204, 204, 204);
+}
+
+.mtm-file-upload-clickzone:hover,
+.mtm-file-upload-dropzone:hover {
+  background-color: rgb(204, 204, 204);
+  color: #000;
+}
+
+.mtm-files-list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-width: 100%;
+  padding: 16px;
+  margin: 10px 0 10px 0;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition-property: box-shadow;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0ms;
+}
+
+.mtm-file-upload-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 10px 0 10px 0;
+}
+
+.mtm-file-upload-title {
+  width: 100%;
+}
+
+.mtm-file-upload-info p {
+  margin: 0;
+}
+
+.mtm-files-list {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  list-style: none;
+}
+
+.mtm-comments-container {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  min-width: 100%;
+  min-height: 100%;
 }
 
-.App-link {
-  color: #61dafb;
+.mtm-comments-container input[type='text'] {
+  box-sizing: border-box;
+  border-width: 0px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition-property: box-shadow;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0ms;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.mtm-comment-input-field {
+  box-sizing: border-box;
+  border-width: 0px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition-property: box-shadow;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0ms;
 }
+.mtm-too-many-files {
+  background-color: rgba(233, 188, 188, 0.5);
+}
+
+.mtm-jsonform-info {
+  margin: 0;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition-property: box-shadow;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-delay: 0ms;
+}
+
+.mtm-jsonform-info-row {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  margin-bottom: 10px;
+  flex: 2;
+  flex-wrap: wrap;
+}
+.mtm-jsonform-info-row p {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.mtm-jsonform-title-column {
+  display: flex;
+  margin-right: 10px;
+  flex: 1;
+}
+
+/* .mtm-jsonform-title-column,
+.mtm-jsonform-info-column {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+} */
+
+/* 
+
+.mtm-jsonform-info-column {
+  display: flex;
+  flex: 2;
+}
+/*
+} */
