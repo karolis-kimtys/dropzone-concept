@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import 'react-dropzone-uploader/dist/styles.css';
 
 import './App.css';
 
