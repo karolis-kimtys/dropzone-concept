@@ -153,15 +153,6 @@
   margin: 0;
 }
 
-.mtm-files-list {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  list-style: none;
-}
-
 .mtm-comments-container {
   box-sizing: border-box;
   display: flex;
@@ -254,18 +245,29 @@
   flex: 1;
 }
 
-/* .mtm-jsonform-title-column,
-.mtm-jsonform-info-column {
+.mtm-files-list {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-} */
-
-/* 
-
-.mtm-jsonform-info-column {
-  display: flex;
-  flex: 2;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  list-style: none;
+  flex-wrap: wrap;
 }
-/*
-} */
+
+.mtm-selected-file-name {
+  display: flex;
+  /* justify-content: space-around; */
+  flex: 1;
+}
+
+.mtm-selected-file-image {
+  margin: 0 10px 0 10px;
+  height: 1.5rem;
+}
+.mtm-selected-file-delete {
+  /* display: flex; */
+  /* flex: 0.1; */
+  /* justify-content: flex-end; */
+  cursor: pointer;
+}

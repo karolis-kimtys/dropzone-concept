@@ -1,23 +1,26 @@
 import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 
+import pdf from './assets/PDF.svg';
+import doc from './assets/DOC.svg';
+import docx from './assets/DOCX.svg';
+
 import './App.css';
 
-// File Parameters
-const maxFileCount = '10';
-const maxFileSize = 15000000; // 25000000 bytes or 25mb
-const allowedFileTypes = 'image/jpeg, image/jpg, image/png';
+const maxFileCount = 3;
+const maxFileSize = 5000000;
+const allowedFileTypes = '.jpg, .jpeg, .png, .doc, .docx, .pdf';
 
 export default function App() {
+  const [isLoaded, setIsLoaded] = useState(true);
   const [isSelectedFiles, setIsSelectedFiles] = useState([]);
 
-  // Will parse selected files
   const onDrop = useCallback(
     (acceptedFiles) => {
-      // Creates and array and spreads previous state of files list with already parsed info
       let allowedFileList = [...isSelectedFiles];
 
       acceptedFiles.forEach((file) => {
+        setIsLoaded(false);
         const fileType = file.name.split('.').pop();
         const fileName = file.name;
         const fileSize = file.size;
@@ -29,60 +32,73 @@ export default function App() {
           console.log('Error: ', error);
         };
 
-        // Parses file info
-        reader.onload = () => {
+        reader.onload = function () {
           allowedFileList.push({
             fileName: fileName,
             fileType: fileType,
             fileSize: fileSize,
             fileContent: reader.result.split(',')[1],
           });
+
+          setIsSelectedFiles(allowedFileList);
+
+          setTimeout(() => {
+            setIsLoaded(true);
+          }, 100);
         };
       });
-      setIsSelectedFiles(allowedFileList);
     },
     [isSelectedFiles]
   );
 
-  const {
-    // acceptedFiles,
-    getRootProps,
-    getInputProps,
-    isDragActive,
-  } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: allowedFileTypes,
     maxFiles: maxFileCount,
     maxSize: maxFileSize,
   });
 
-  // WEIRD ISSUE
-  // if below map function is set to acceptedFiles.map... when DOM automatically refreshes and displays a list of files, but if set to map a state of isSelectedFiles then DOM rerenders/refreshes on right mouse click anywhere in DOM or browser
-  // The reason is why i need this is person can add one files after another and previous file will not get erased
   let selectedFiles = isSelectedFiles.map((file, key) => {
+    const list = [...isSelectedFiles];
     return (
-      <div className="mtm-files-list" key={key}>
-        <p>
-          {key + 1}. {file.fileName}
-        </p>
-        <p
-          onClick={() => {
-            // deleteFileSelection(key);
-            // list.splice(key, 1);
-            // setIsTempList(list);
-            // setIsSelectedFiles(list);
-          }}>
-          ❌
-        </p>
-      </div>
+      isLoaded && (
+        <div className="mtm-files-list" key={key}>
+          <p className="mtm-selected-file-name">
+            {key + 1}. {file.fileName}
+          </p>
+          <img
+            className="mtm-selected-file-image"
+            src={
+              file.fileType === 'pdf'
+                ? pdf
+                : file.fileType === 'doc'
+                ? doc
+                : file.fileType === 'docx'
+                ? docx
+                : `data:image/jpeg;base64,${file.fileContent}`
+            }
+            alt=""
+          />
+          <p
+            className="mtm-selected-file-delete"
+            onClick={() => {
+              deleteFileSelection(key);
+              list.splice(key, 1);
+              setIsSelectedFiles(list);
+              console.log(`File ${file.fileName} has been deleted.`);
+            }}>
+            ❌
+          </p>
+        </div>
+      )
     );
   });
 
-  // const deleteFileSelection = (index) => {
-  //   const tempFileList = [...isSelectedFiles];
-  //   tempFileList.splice(index, 1);
-  //   setIsSelectedFiles(tempFileList);
-  // };
+  const deleteFileSelection = (index) => {
+    const tempFileList = [...isSelectedFiles];
+    tempFileList.splice(index, 1);
+    setIsSelectedFiles(tempFileList);
+  };
 
   const filesSubmit = () => {
     console.log('Files Submitted', isSelectedFiles);
@@ -90,6 +106,7 @@ export default function App() {
 
   return (
     <div className="App App-header">
+      <h2>React Dropzone MOD</h2>
       <div className="mtm-wrapper-file-upload">
         <div {...getRootProps()} className="mtm-wrapper-file-upload">
           <input {...getInputProps()} />
@@ -105,7 +122,12 @@ export default function App() {
 
         <div className="mtm-file-upload-title">{selectedFiles}</div>
 
+        {isSelectedFiles.length > maxFileCount && (
+          <div>Too many files selected.</div>
+        )}
+
         <button
+          disabled={isSelectedFiles.length > maxFileCount}
           onClick={() => {
             filesSubmit();
           }}>
